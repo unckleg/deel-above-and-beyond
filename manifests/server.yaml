@@ -30,7 +30,7 @@ spec:
         - name: registry-secret
       containers:
         - name: deel-server
-          image: ghcr.io/deel-deel-above-and-beyond/server:main
+          image: ghcr.io/unckleg/deel-above-and-beyond/server:main
           ports:
             - containerPort: 3001
           imagePullPolicy: Always
