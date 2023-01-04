@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: deel-infra-namespace
+  name: deel-server-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 3001
+      targetPort: 3001
+  selector:
+    app: deel-server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: deel-infra-namespace
+  name: deel-server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deel-server
+  template:
+    metadata:
+      labels:
+        app: deel-server
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+        - name: deel-server
+          image: ghcr.io/deel-deel-above-and-beyond/server:main
+          ports:
+            - containerPort: 3001
+          imagePullPolicy: Always

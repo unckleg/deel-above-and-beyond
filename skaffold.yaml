@@ -1,0 +1,13 @@
+apiVersion: skaffold/v1 # OptIn
+kind: Config
+metadata:
+  name: deel-kubernetes
+deploy:
+  kubectl:
+    manifests:
+      - ./manifests/path_provisioner.yaml
+      - ./manifests/namespaces.yaml
+      - ./manifests/volumes.yaml
+      - ./manifests/secrets.yaml
+      - ./manifests/server.yaml
+      - ./manifests/client.yaml
